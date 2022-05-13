@@ -46,10 +46,16 @@
 *.mod*
 *.cmd
 .tmp_versions/
+
 modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-# paths
+
+# IAR paths
 IAR_project/GD32F330/Obj/*
 IAR_project/settings/*
+# IAR
+IAR_project/Project.dep
+Backup*.*
+
