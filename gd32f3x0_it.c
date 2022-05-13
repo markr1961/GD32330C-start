@@ -4,6 +4,8 @@
 
     \version 2017-06-06, V1.0.0, firmware for GD32F3x0
     \version 2019-06-01, V2.0.0, firmware for GD32F3x0
+
+    \version 2022-05-13 added SysTickcounter - markr1961
 */
 
 /*

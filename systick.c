@@ -4,6 +4,8 @@
 
     \version 2017-06-06, V1.0.0, firmware for GD32F3x0
     \version 2019-06-01, V2.0.0, firmware for GD32F3x0
+
+    \version 2022-05-13 heavily modified by markr1961 as part of GD32330S-start test bed.
 */
 
 /*
@@ -37,7 +39,7 @@ OF SUCH DAMAGE.
 #include "systick.h"
 
 volatile static uint32_t delay;
-
+static          bool   delayRunning;
 /*!
     \brief      configure systick
     \param[in]  none
@@ -62,14 +64,16 @@ void systick_config(void)
     \param[out] none
     \retval     none
 */
-void delay_1ms(uint32_t count)
+void set_delay_1ms(uint32_t count)
 {
     delay = count;
-
-    while(0U != delay){
-    }
+    delayRunning = TRUE;
 }
 
+bool checkDelayRunning(void)
+{
+    return delayRunning;
+}
 /*!
     \brief      delay decrement
     \param[in]  none
@@ -78,7 +82,8 @@ void delay_1ms(uint32_t count)
 */
 void delay_decrement(void)
 {
-    if (0U != delay){
+    if (0U != delay)
         delay--;
-    }
+    else
+      delayRunning = FALSE;
 }

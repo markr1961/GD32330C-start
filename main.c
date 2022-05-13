@@ -4,32 +4,34 @@
 
     \version 2017-06-06, V1.0.0, firmware for GD32F3x0
     \version 2019-06-01, V2.0.0, firmware for GD32F3x0
+
+    \ version 2022-05-13 heavily modified by markr1961 as part of GD32330S-start test bed.
 */
 
 /*
     Copyright (c) 2019, GigaDevice Semiconductor Inc.
 
-    Redistribution and use in source and binary forms, with or without modification, 
+    Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice, this 
+    1. Redistributions of source code must retain the above copyright notice, this
        list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice, 
-       this list of conditions and the following disclaimer in the documentation 
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
        and/or other materials provided with the distribution.
-    3. Neither the name of the copyright holder nor the names of its contributors 
-       may be used to endorse or promote products derived from this software without 
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
        specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
 
@@ -39,10 +41,11 @@ OF SUCH DAMAGE.
 #include "main.h"
 #include "gd32330c-start.h"
 
-
 unsigned int SysTickCounter;
 unsigned int adcStart, adcEnd;
 uint16_t adcData;
+
+void delay_uSec(unsigned long ulDelay_us);  // in delay_uSec.c
 
 /*!
     \brief      configure the different system clocks
@@ -68,7 +71,7 @@ void rcu_config(void)
 */
 void gpio_config(void)
 {
-    /* config the GPIO as analog mode */ 
+    /* config the GPIO as analog mode */
     gpio_mode_set(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO_PIN_1);
 }
 
@@ -85,9 +88,8 @@ void adc_config(void)
     /* ADC regular channel config */
     adc_regular_channel_config(0U, ADC_CHANNEL_1, ADC_SAMPLETIME_55POINT5);
 
-
     /* ADC trigger config */
-    adc_external_trigger_source_config(ADC_REGULAR_CHANNEL, ADC_EXTTRIG_REGULAR_NONE); 
+    adc_external_trigger_source_config(ADC_REGULAR_CHANNEL, ADC_EXTTRIG_REGULAR_NONE);
     /* ADC data alignment config */
     adc_data_alignment_config(ADC_DATAALIGN_RIGHT);
 
@@ -99,7 +101,7 @@ void adc_config(void)
 
     /* enable ADC interface */
     adc_enable();
-    delay_1ms(1U);
+    delay_uSec(1000);
 
     /* ADC calibration and reset calibration */
     adc_calibration_enable();
@@ -115,16 +117,22 @@ void led_spark(void)
 {
     static __IO uint32_t timingdelaylocal = 0U;
 
-    if(timingdelaylocal){
+    if(timingdelaylocal)
+    {
 
-        if(timingdelaylocal < 500U){
+        if(timingdelaylocal < 500U)
+        {
             gd_eval_led_on(LED1);
-        }else{
+        }
+        else
+        {
             gd_eval_led_off(LED1);
         }
 
         timingdelaylocal--;
-    }else{
+    }
+    else
+    {
         timingdelaylocal = 1000U;
     }
 }
@@ -140,7 +148,7 @@ int main(void)
     rcu_config();
     /* configure systick */
     systick_config();
-    /* ADC GPIO configuration */   
+    /* ADC GPIO configuration */
     gpio_config();
     /* ADC configuration */
     adc_config();
@@ -150,7 +158,7 @@ int main(void)
     gd_eval_led_init(LED2);
     gd_eval_com_init(EVAL_COM);
     gd_eval_key_init(KEY_WAKEUP, KEY_MODE_GPIO);
-    
+
     /* print out the clock frequency of system, AHB, APB1 and APB2 */
     printf("SystemCoreClock is %d\r\n", SystemCoreClock);
     printf("CK_SYS   is %8d\r\n", rcu_clock_freq_get(CK_SYS));
@@ -160,26 +168,35 @@ int main(void)
     printf("CK_ADC   is %8d\r\n", rcu_clock_freq_get(CK_ADC));
     printf("CK_USART is %8d\r\n", rcu_clock_freq_get(CK_USART));
 
-    while (1){
-        if(RESET == gd_eval_key_state_get(KEY_WAKEUP)){
-            gd_eval_led_on(LED2);
-            delay_1ms(500);
-            gd_eval_led_off(LED2);
-//            gd_eval_led_toggle(LED1);
-        }
-        if ((SysTickCounter % 1000) == 0)
+    while (1)
+    {
+        // LED2 toggles when button is not pressed:
+        if(RESET == gd_eval_key_state_get(KEY_WAKEUP))
         {
-          if (adc_flag_get(ADC_FLAG_STRC) != SET)
-          {
+            if (!checkDelayRunning())
+            {
+                gd_eval_led_toggle(LED2);
+                set_delay_1ms(500);
+            }
+        }
+        else
+            gd_eval_led_off(LED2);
+
+        // once each second, if a conversion is not in-progress, start one
+        if (((SysTickCounter % 1000) == 0)
+                && (adc_flag_get(ADC_FLAG_STRC) != SET))
+        {
             adcStart = SysTickCounter;
             adc_software_trigger_enable(ADC_REGULAR_CHANNEL);
-          }
         }
+        // once it's complete, read it:
         if (adc_flag_get(ADC_FLAG_EOC) == SET)
         {
-          adcEnd = SysTickCounter;
-          adcData = adc_regular_data_read();
-          printf("\r\nconversion time %d", adcEnd - adcStart);
+            adcEnd = SysTickCounter;
+            adcData = adc_regular_data_read();
+            //printf("conversion time %d\r\n", adcEnd - adcStart);
+            // clear the start flag so the next conversion can run
+            adc_flag_clear(ADC_FLAG_STRC);
         }
     }
 }

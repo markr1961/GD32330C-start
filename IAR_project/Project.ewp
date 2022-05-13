@@ -974,6 +974,9 @@
   <group>
     <name>Application</name>
     <file>
+      <name>$PROJ_DIR$\..\delay_uSec.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\gd32f3x0_it.c</name>
     </file>
     <file>
