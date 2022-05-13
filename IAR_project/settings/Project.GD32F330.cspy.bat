@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\GD32_projects\GD32330C-START\IAR_project\settings\Project.GD32F330.general.xcl" --backend -f "C:\GD32_projects\GD32330C-START\IAR_project\settings\Project.GD32F330.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\GD32-projects\GD32330C-start\IAR_project\settings\Project.GD32F330.general.xcl" --backend -f "C:\GD32-projects\GD32330C-start\IAR_project\settings\Project.GD32F330.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\GD32_projects\GD32330C-START\IAR_project\settings\Project.GD32F330.general.xcl" "--debug_file=%~1" --backend -f "C:\GD32_projects\GD32330C-START\IAR_project\settings\Project.GD32F330.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "C:\GD32-projects\GD32330C-start\IAR_project\settings\Project.GD32F330.general.xcl" "--debug_file=%~1" --backend -f "C:\GD32-projects\GD32330C-start\IAR_project\settings\Project.GD32F330.driver.xcl" 
 
 @echo off 
 :end
