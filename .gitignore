@@ -59,3 +59,5 @@ IAR_project/settings/*
 IAR_project/Project.dep
 Backup*.*
 
+/IAR_project/Project.dep
+settings
