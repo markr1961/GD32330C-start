@@ -77,7 +77,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>7.80.1.11865</state>
+          <state>7.80.4.12487</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -132,11 +132,11 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GRuntimeLibThreads</name>
@@ -154,12 +154,12 @@
         <option>
           <name>FPU2</name>
           <version>0</version>
-          <state>0</state>
+          <state>4</state>
         </option>
         <option>
           <name>NrRegs</name>
           <version>0</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>NEON</name>
@@ -312,9 +312,9 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS</state>
-          <state>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Include</state>
-          <state>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Include</state>
+          <state>$PROJ_DIR$\..\..\Firmware\CMSIS</state>
+          <state>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Include</state>
+          <state>$PROJ_DIR$\..\..\Firmware\CMSIS\GD\GD32F3x0\Include</state>
           <state>$PROJ_DIR$\..\..\Utilities</state>
           <state>$PROJ_DIR$\..</state>
         </option>
@@ -650,7 +650,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>17</version>
+        <version>18</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -703,7 +703,7 @@
         </option>
         <option>
           <name>IlinkMapFile</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>IlinkLogFile</name>
@@ -727,11 +727,11 @@
         </option>
         <option>
           <name>IlinkIcfOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>lnk0t.icf</state>
+          <state>$TOOLKIT_DIR$\config\linker\GD\GD32F330x8.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -791,7 +791,7 @@
         </option>
         <option>
           <name>IlinkProgramEntryLabel</name>
-          <state></state>
+          <state>__iar_program_start</state>
         </option>
         <option>
           <name>DoFill</name>
@@ -922,7 +922,7 @@
         </option>
         <option>
           <name>CrcAlgorithm</name>
-          <version>0</version>
+          <version>1</version>
           <state>1</state>
         </option>
         <option>
@@ -937,6 +937,10 @@
         <option>
           <name>IlinkLogCallGraph</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>IlinkIcfFile_AltDefault</name>
+          <state></state>
         </option>
       </data>
     </settings>
@@ -1615,7 +1619,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>17</version>
+        <version>18</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -1632,7 +1636,7 @@
         </option>
         <option>
           <name>IlinkOutputFile</name>
-          <state>###Unitialized###</state>
+          <state>Project.out</state>
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
@@ -1668,7 +1672,7 @@
         </option>
         <option>
           <name>IlinkMapFile</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>IlinkLogFile</name>
@@ -1692,11 +1696,11 @@
         </option>
         <option>
           <name>IlinkIcfOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>lnk0t.icf</state>
+          <state>$TOOLKIT_DIR$\config\linker\GD\GD32F350xB.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -1756,7 +1760,7 @@
         </option>
         <option>
           <name>IlinkProgramEntryLabel</name>
-          <state></state>
+          <state>__iar_program_start</state>
         </option>
         <option>
           <name>DoFill</name>
@@ -1887,7 +1891,7 @@
         </option>
         <option>
           <name>CrcAlgorithm</name>
-          <version>0</version>
+          <version>1</version>
           <state>1</state>
         </option>
         <option>
@@ -1902,6 +1906,10 @@
         <option>
           <name>IlinkLogCallGraph</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>IlinkIcfFile_AltDefault</name>
+          <state></state>
         </option>
       </data>
     </settings>
@@ -1947,10 +1955,7 @@
   <group>
     <name>CMSIS</name>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Source\IAR\startup_gd32f3x0.s</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Source\system_gd32f3x0.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\CMSIS\GD\GD32F3x0\Source\system_gd32f3x0.c</name>
     </file>
   </group>
   <group>
@@ -1971,73 +1976,79 @@
   <group>
     <name>GD32F3x0_Peripherals</name>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_adc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_adc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cec.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cec.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cmp.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cmp.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_crc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_crc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_ctc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_ctc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dac.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dac.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dbg.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dbg.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dma.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dma.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_exti.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_exti.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fmc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fmc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fwdgt.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fwdgt.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_gpio.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_gpio.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_i2c.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_i2c.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_misc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_misc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_pmu.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_pmu.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rcu.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rcu.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rtc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rtc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_spi.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_spi.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_syscfg.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_syscfg.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_timer.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_timer.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_tsi.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_tsi.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_usart.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_usart.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_wwdgt.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_wwdgt.c</name>
+    </file>
+  </group>
+  <group>
+    <name>Startup</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\Firmware\CMSIS\GD\GD32F3x0\Source\IAR\startup_gd32f3x0.s</name>
     </file>
   </group>
 </project>

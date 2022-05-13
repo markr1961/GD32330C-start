@@ -2329,10 +2329,7 @@
   <group>
     <name>CMSIS</name>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Source\IAR\startup_gd32f3x0.s</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Source\system_gd32f3x0.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\CMSIS\GD\GD32F3x0\Source\system_gd32f3x0.c</name>
     </file>
   </group>
   <group>
@@ -2353,73 +2350,79 @@
   <group>
     <name>GD32F3x0_Peripherals</name>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_adc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_adc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cec.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cec.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cmp.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_cmp.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_crc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_crc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_ctc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_ctc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dac.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dac.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dbg.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dbg.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dma.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_dma.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_exti.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_exti.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fmc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fmc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fwdgt.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_fwdgt.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_gpio.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_gpio.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_i2c.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_i2c.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_misc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_misc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_pmu.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_pmu.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rcu.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rcu.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rtc.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_rtc.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_spi.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_spi.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_syscfg.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_syscfg.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_timer.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_timer.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_tsi.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_tsi.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_usart.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_usart.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_wwdgt.c</name>
+      <name>$PROJ_DIR$\..\..\Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_wwdgt.c</name>
+    </file>
+  </group>
+  <group>
+    <name>Startup</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\Firmware\CMSIS\GD\GD32F3x0\Source\IAR\startup_gd32f3x0.s</name>
     </file>
   </group>
 </project>

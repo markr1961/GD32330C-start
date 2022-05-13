@@ -89,7 +89,7 @@
         </option>
         <option>
           <name>OCLastSavedByProductVersion</name>
-          <state>7.80.1.11865</state>
+          <state>7.80.4.12487</state>
         </option>
         <option>
           <name>UseFlashLoader</name>
@@ -332,7 +332,7 @@
         <option>
           <name>CMSISDAPResetList</name>
           <version>1</version>
-          <state>2</state>
+          <state>9</state>
         </option>
         <option>
           <name>CMSISDAPHWResetDuration</name>
@@ -1195,7 +1195,7 @@
       <name>STLINK_ID</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>3</version>
+        <version>4</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -1212,12 +1212,12 @@
         </option>
         <option>
           <name>CCSTLinkResetList</name>
-          <version>1</version>
+          <version>3</version>
           <state>0</state>
         </option>
         <option>
           <name>CCCpuClockEdit</name>
-          <state></state>
+          <state>72.0</state>
         </option>
         <option>
           <name>CCSwoClockAuto</name>
@@ -1299,6 +1299,10 @@
         <option>
           <name>CCSTLinkDAPNumber</name>
           <state></state>
+        </option>
+        <option>
+          <name>CCSTLinkDebugAccessPortRadio</name>
+          <state>0</state>
         </option>
       </data>
     </settings>
@@ -2834,7 +2838,7 @@
       <name>STLINK_ID</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>3</version>
+        <version>4</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -2851,12 +2855,12 @@
         </option>
         <option>
           <name>CCSTLinkResetList</name>
-          <version>1</version>
+          <version>3</version>
           <state>0</state>
         </option>
         <option>
           <name>CCCpuClockEdit</name>
-          <state></state>
+          <state>72.0</state>
         </option>
         <option>
           <name>CCSwoClockAuto</name>
@@ -2938,6 +2942,10 @@
         <option>
           <name>CCSTLinkDAPNumber</name>
           <state></state>
+        </option>
+        <option>
+          <name>CCSTLinkDebugAccessPortRadio</name>
+          <state>0</state>
         </option>
       </data>
     </settings>

@@ -282,9 +282,9 @@
                 "__weak="
             ],
             "includePath": [
-                "e:\\Src\\Firmware\\CMSIS",
-                "e:\\Src\\Firmware\\GD32F3x0_standard_peripheral\\Include",
-                "e:\\Src\\Firmware\\CMSIS\\GD\\GD32F3x0\\Include",
+                "e:\\Src\\GD32_Firmware\\CMSIS",
+                "e:\\Src\\GD32_Firmware\\GD32F3x0_standard_peripheral\\Include",
+                "e:\\Src\\GD32_Firmware\\CMSIS\\GD\\GD32F3x0\\Include",
                 "e:\\Src\\Utilities",
                 "e:\\Src\\GD32330C-start",
                 "C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.5\\arm\\inc",
