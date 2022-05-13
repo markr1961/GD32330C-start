@@ -152,10 +152,13 @@ int main(void)
     gd_eval_key_init(KEY_WAKEUP, KEY_MODE_GPIO);
     
     /* print out the clock frequency of system, AHB, APB1 and APB2 */
-    printf("\r\nCK_SYS is %d", rcu_clock_freq_get(CK_SYS));
-    printf("\r\nCK_AHB is %d", rcu_clock_freq_get(CK_AHB));
-    printf("\r\nCK_APB1 is %d", rcu_clock_freq_get(CK_APB1));
-    printf("\r\nCK_APB2 is %d", rcu_clock_freq_get(CK_APB2));
+    printf("SystemCoreClock is %d\r\n", SystemCoreClock);
+    printf("CK_SYS   is %8d\r\n", rcu_clock_freq_get(CK_SYS));
+    printf("CK_AHB   is %8d\r\n", rcu_clock_freq_get(CK_AHB));
+    printf("CK_APB1  is %8d\r\n", rcu_clock_freq_get(CK_APB1));
+    printf("CK_APB2  is %8d\r\n", rcu_clock_freq_get(CK_APB2));
+    printf("CK_ADC   is %8d\r\n", rcu_clock_freq_get(CK_ADC));
+    printf("CK_USART is %8d\r\n", rcu_clock_freq_get(CK_USART));
 
     while (1){
         if(RESET == gd_eval_key_state_get(KEY_WAKEUP)){
@@ -164,7 +167,7 @@ int main(void)
             gd_eval_led_off(LED2);
 //            gd_eval_led_toggle(LED1);
         }
-        if (SysTickCounter % 1000)
+        if ((SysTickCounter % 1000) == 0)
         {
           if (adc_flag_get(ADC_FLAG_STRC) != SET)
           {
