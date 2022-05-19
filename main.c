@@ -143,11 +143,24 @@ void led_spark(void)
     \param[out] none
     \retval     none
 */
+
+#define TEST_LOOPS 10000
 int main(void)
 {
     rcu_config();
     /* configure systick */
     systick_config();
+    
+    unsigned int loop_start = SysTickCounter;
+    for (int i = 0; i < TEST_LOOPS; i++)
+          delay_uSec(1000);
+    unsigned int loop_end = SysTickCounter;
+
+    if ( loop_end > loop_start + TEST_LOOPS + 1)
+      printf("uS delay ERROR! \r\n");
+    printf("test loops %d, delta = %d\r\n", TEST_LOOPS, loop_end - loop_start);
+    printf("loop_end %d, loop_start = %d\r\n", loop_end, loop_start);
+    
     /* ADC GPIO configuration */
     gpio_config();
     /* ADC configuration */

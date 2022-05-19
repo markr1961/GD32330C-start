@@ -4,6 +4,7 @@
         {
             "name": "IAR",
             "defines": [
+                "__cpp_designated_initializers=201707L",
                 "USE_STDPERIPH_DRIVER=",
                 "GD32F3X0=",
                 "GD32F330=",
