@@ -40,7 +40,9 @@ OF SUCH DAMAGE.
 
 /* configure systick */
 void systick_config(void);
-/* delay a time in milliseconds */
+/* delay a time in milliseconds (blocking)*/
+void delay_ms(uint32_t count);
+/* start a delay timeer in milliseconds*/
 void set_delay_1ms(uint32_t count);
 /* delay decrement */
 void delay_decrement(void);

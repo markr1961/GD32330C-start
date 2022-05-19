@@ -21,15 +21,15 @@ void delay_uSec(unsigned long ulDelay_us)
   SysTick->CTRL |= SysTick_CTRL_COUNTFLAG_Msk;  // clear the SysTick reload flag
 
   ulMatch = ((SysTick->VAL - CORE_US) & SysTick_VAL_CURRENT_Msk);   // first 1uSec match value (SysTick counts down)
-  do
-  {
+  
+  do {
     // wait until the uSec period has expired
     while (SysTick->VAL > ulMatch)
     {
       // if we missed a reload (that is, the SysTick was reloaded with its reload value after reaching zero)
-      // clear the SysTick reload flag
       if ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) != 0)
       {
+//        SysTick->CTRL |= SysTick_CTRL_COUNTFLAG_Msk;  // clear the SysTick reload flag
         break;  // assume a single uSec period expired
       }
     }

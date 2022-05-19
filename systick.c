@@ -10,6 +10,7 @@
 
 /*
     Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyleft (c) 2022, markr1961
 
     Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -37,6 +38,7 @@ OF SUCH DAMAGE.
 
 #include "gd32f3x0.h"
 #include "systick.h"
+#include "main.h"
 
 volatile static uint32_t delay;
 static          bool   delayRunning;
@@ -59,7 +61,20 @@ void systick_config(void)
 }
 
 /*!
-    \brief      delay a time in milliseconds
+    \brief      delay milliseconds (blocking
+    \param[in]  count: count in milliseconds
+    \param[out] none
+    \retval     none
+*/
+void delay_ms(uint32_t count)
+{
+    uint32_t blocking_delay = SysTickCounter + count;
+    while (SysTickCounter < blocking_delay)
+      ;
+}
+
+/*!
+    \brief      start a delay timer in milliseconds
     \param[in]  count: count in milliseconds
     \param[out] none
     \retval     none
