@@ -19,7 +19,7 @@ Unlike demo boards from other vendors, the GD-Link debugger does not include an 
 So there is no direct communication option from the target CPU to the system and an external 3.3V USB-serial device is needed.
 
 CPU:
-GD32F330C6 Cortex-M4 @ 84MHz max
+GD32F330C8T6 Cortex-M4 @ 84MHz max
 64K flash, 8K RAM
 (2) UART, (2) I2C, (2) SPI
 1 ADC, 10 channels

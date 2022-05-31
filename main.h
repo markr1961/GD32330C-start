@@ -38,6 +38,8 @@ OF SUCH DAMAGE.
 
 extern unsigned int SysTickCounter;
 
+#define DEBUG_BREAK() do { __asm("bkpt #0"); } while(0)
+
 /* led spark function */
 void led_spark(void);
 

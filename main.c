@@ -38,6 +38,7 @@ OF SUCH DAMAGE.
 #include "gd32f3x0.h"
 #include "systick.h"
 #include <stdio.h>
+#include <stdbool.h>
 #include "main.h"
 #include "gd32330c-start.h"
 
@@ -45,7 +46,24 @@ unsigned int SysTickCounter;
 unsigned int adcStart, adcEnd;
 uint16_t adcData;
 
+uint16_t timer16PwmSetting = 500; // start at 50%.
+bool bTimerSet = false;
+
 void delay_uSec(unsigned long ulDelay_us);  // in delay_uSec.c
+// functions in Timer16Pwm.c
+void InitTimer16Pwm(void);
+void SetDutyCycle(uint16_t dutyCycle);
+
+
+void Sleep(void)
+{
+  static int lastSystick=0;
+  lastSystick = SysTickCounter;
+  // sleep for up to 1 second:
+  while (lastSystick == SysTickCounter)
+    __WFI();
+}
+
 
 /*!
     \brief      configure the different system clocks
@@ -69,7 +87,7 @@ void rcu_config(void)
     \param[out] none
     \retval     none
 */
-void gpio_config(void)
+void acd_gpio_config(void)
 {
     /* config the GPIO as analog mode */
     gpio_mode_set(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO_PIN_1);
@@ -184,15 +202,18 @@ int main(void)
 //    test_usec_delay();
     
     /* ADC GPIO configuration */
-    gpio_config();
+    acd_gpio_config();
     /* ADC configuration */
     adc_config();
 
-    /* initilize the LEDs, USART and key */
+    /* initialize the LEDs, USART and key(aka button) */
     gd_eval_led_init(LED1);
     gd_eval_led_init(LED2);
     gd_eval_com_init(EVAL_COM);
     gd_eval_key_init(KEY_WAKEUP, KEY_MODE_GPIO);
+    
+    /* init Timer16 as a PWM on the default I/O */
+    InitTimer16Pwm();
 
     /* print out the clock frequency of system, AHB, APB1 and APB2 */
     printf("SystemCoreClock is %d\r\n", SystemCoreClock);
@@ -233,7 +254,24 @@ int main(void)
             // clear the start flag so the next conversion can run
             adc_flag_clear(ADC_FLAG_STRC);
         }
-    }
+        // update Timer16 5x per second
+        if ((SysTickCounter % 200) == 0)
+        {
+          if (!bTimerSet)
+          {
+            timer16PwmSetting += 10;
+            if (timer16PwmSetting >= 1000)
+              timer16PwmSetting = 0;
+            SetDutyCycle(timer16PwmSetting);  // set it.
+            bTimerSet = true;
+          }
+        }
+        else
+          bTimerSet = false;
+
+      Sleep();
+
+    }// wend(1)
 }
 
 /* retarget the C library printf function to the USART */

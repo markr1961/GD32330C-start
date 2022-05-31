@@ -1172,6 +1172,9 @@
     <file>
       <name>$PROJ_DIR$\..\systick.c</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\..\Tmer16Pwm.c</name>
+    </file>
   </group>
   <group>
     <name>CMSIS</name>
@@ -1195,6 +1198,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\gd32330c-start.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\main.h</name>
     </file>
   </group>
   <group>

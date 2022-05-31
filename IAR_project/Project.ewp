@@ -154,12 +154,12 @@
         <option>
           <name>FPU2</name>
           <version>0</version>
-          <state>0</state>
+          <state>4</state>
         </option>
         <option>
           <name>NrRegs</name>
           <version>0</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>NEON</name>
@@ -985,6 +985,9 @@
     <file>
       <name>$PROJ_DIR$\..\systick.c</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\..\Tmer16Pwm.c</name>
+    </file>
   </group>
   <group>
     <name>CMSIS</name>
@@ -1008,6 +1011,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\gd32330c-start.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\main.h</name>
     </file>
   </group>
   <group>
