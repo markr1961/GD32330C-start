@@ -47,6 +47,7 @@ OF SUCH DAMAGE.
 */
 void NMI_Handler(void)
 {
+  DEBUG_BREAK();
 }
 
 /*!
@@ -57,6 +58,7 @@ void NMI_Handler(void)
 */
 void HardFault_Handler(void)
 {
+  DEBUG_BREAK();
     /* if Hard Fault exception occurs, go to infinite loop */
     while(1){
     }
@@ -70,6 +72,7 @@ void HardFault_Handler(void)
 */
 void MemManage_Handler(void)
 {
+  DEBUG_BREAK();
     /* if Memory Manage exception occurs, go to infinite loop */
     while(1){
     }
@@ -83,6 +86,7 @@ void MemManage_Handler(void)
 */
 void BusFault_Handler(void)
 {
+  DEBUG_BREAK();
     /* if Bus Fault exception occurs, go to infinite loop */
     while(1){
     }
@@ -109,6 +113,7 @@ void UsageFault_Handler(void)
 */
 void SVC_Handler(void)
 {
+  DEBUG_BREAK();
 }
 
 /*!
@@ -119,6 +124,7 @@ void SVC_Handler(void)
 */
 void DebugMon_Handler(void)
 {
+  DEBUG_BREAK();
 }
 
 /*!
@@ -129,6 +135,7 @@ void DebugMon_Handler(void)
 */
 void PendSV_Handler(void)
 {
+  DEBUG_BREAK();
 }
 
 /*!

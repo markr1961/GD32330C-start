@@ -45,7 +45,7 @@ void InitTimer16Pwm(void)
 
   // Timer Base configuration
   timer_struct_para_init(&TIM_TimeBaseStructure);
-  TIM_TimeBaseStructure.prescaler = 0;
+  TIM_TimeBaseStructure.prescaler = 21-1; // 42MHz/22= 2MHz input
   TIM_TimeBaseStructure.counterdirection = TIMER_COUNTER_UP;
   TIM_TimeBaseStructure.period = CLOCK_DIVIDER;
   TIM_TimeBaseStructure.clockdivision = TIMER_CKDIV_DIV1;
