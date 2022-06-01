@@ -82,7 +82,7 @@ void delay_ms(uint32_t count)
 void set_delay_1ms(uint32_t count)
 {
     delay = count;
-    delayRunning = TRUE;
+    delayRunning = true;
 }
 
 bool checkDelayRunning(void)
@@ -100,5 +100,5 @@ void delay_decrement(void)
     if (0U != delay)
         delay--;
     else
-      delayRunning = FALSE;
+      delayRunning = false;
 }

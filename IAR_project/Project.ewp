@@ -977,7 +977,13 @@
       <name>$PROJ_DIR$\..\delay_uSec.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\gd32330c-start.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\gd32f3x0_it.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\led.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\main.c</name>
@@ -996,24 +1002,6 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\GD32_Firmware\CMSIS\GD\GD32F3x0\Source\system_gd32f3x0.c</name>
-    </file>
-  </group>
-  <group>
-    <name>Doc</name>
-    <file>
-      <name>$PROJ_DIR$\..\readme.txt</name>
-    </file>
-  </group>
-  <group>
-    <name>GD32F3x0_EVAL</name>
-    <file>
-      <name>$PROJ_DIR$\..\gd32330c-start.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\gd32330c-start.h</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\main.h</name>
     </file>
   </group>
   <group>
@@ -1086,6 +1074,21 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\GD32_Firmware\GD32F3x0_standard_peripheral\Source\gd32f3x0_wwdgt.c</name>
+    </file>
+  </group>
+  <group>
+    <name>include</name>
+    <file>
+      <name>$PROJ_DIR$\..\gd32330c-start.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\gd32f3x0_it.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\main.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\systick.h</name>
     </file>
   </group>
 </project>

@@ -36,7 +36,7 @@ OF SUCH DAMAGE.
 #ifndef SYSTICK_H
 #define SYSTICK_H
 
-#include <stdint.h>
+#include <stdbool.h>
 
 /* configure systick */
 void systick_config(void);

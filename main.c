@@ -35,12 +35,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#include "gd32f3x0.h"
-#include "systick.h"
-#include <stdio.h>
-#include <stdbool.h>
 #include "main.h"
-#include "gd32330c-start.h"
 
 unsigned int SysTickCounter;
 unsigned int adcStart, adcEnd;
@@ -65,12 +60,7 @@ void Sleep(void)
 }
 
 
-/*!
-    \brief      configure the different system clocks
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
+/* configure the I/O clocks */
 void rcu_config(void)
 {
     /* enable GPIOC clock */
@@ -81,24 +71,14 @@ void rcu_config(void)
     rcu_adc_clock_config(RCU_ADCCK_APB2_DIV6);
 }
 
-/*!
-    \brief      configure the GPIO peripheral
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
+/* configure the ADC GPIO */
 void acd_gpio_config(void)
 {
     /* config the GPIO as analog mode */
     gpio_mode_set(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO_PIN_1);
 }
 
-/*!
-    \brief      configure the ADC peripheral
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
+/* configure the ADC peripheral */
 void adc_config(void)
 {
     /* ADC channel length config */
@@ -113,8 +93,7 @@ void adc_config(void)
 
     adc_external_trigger_config(ADC_REGULAR_CHANNEL, ENABLE);
 
-    ///* ADC discontinuous mode */
-    //adc_discontinuous_mode_config(ADC_REGULAR_CHANNEL, 1U);
+    /* ADC discontinuous mode */
     adc_special_function_config(ADC_SCAN_MODE, DISABLE);
 
     /* enable ADC interface */
@@ -124,35 +103,6 @@ void adc_config(void)
     /* ADC calibration and reset calibration */
     adc_calibration_enable();
 
-}
-/*!
-    \brief      toggle the led every 500ms
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void led_spark(void)
-{
-    static __IO uint32_t timingdelaylocal = 0U;
-
-    if(timingdelaylocal)
-    {
-
-        if(timingdelaylocal < 500U)
-        {
-            gd_eval_led_on(LED1);
-        }
-        else
-        {
-            gd_eval_led_off(LED1);
-        }
-
-        timingdelaylocal--;
-    }
-    else
-    {
-        timingdelaylocal = 1000U;
-    }
 }
 
 #define TEST_LOOPS 10000

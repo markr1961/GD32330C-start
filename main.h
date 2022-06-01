@@ -36,11 +36,17 @@ OF SUCH DAMAGE.
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdio.h>
+#include <stdbool.h>
+#include "gd32f3x0.h"
+#include "systick.h"
+#include "gd32330c-start.h"
+
 extern unsigned int SysTickCounter;
 
 #define DEBUG_BREAK() do { __asm("bkpt #0"); } while(0)
 
 /* led spark function */
-void led_spark(void);
+void led_spark(void); // in led.c
 
 #endif /* MAIN_H */
