@@ -150,3 +150,35 @@ void SysTick_Handler(void)
   led_spark();
   delay_decrement();
 }
+
+/*!
+    \brief      this function handles USART RBNE interrupt request and TBE interrupt request
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void USART0_IRQHandler(void)
+{
+    if (usart_flag_get(EVAL_COM, USART_FLAG_RBNE))
+    {
+//        DEBUG_BREAK();
+    }
+    if(RESET != usart_interrupt_flag_get(EVAL_COM, USART_INT_FLAG_RBNE)){
+        /* receive data */
+        receiver_buffer[rxcount++] = usart_data_receive(EVAL_COM);
+        if (usart_flag_get(EVAL_COM, USART_FLAG_ORERR))
+          usart_flag_clear(EVAL_COM, USART_FLAG_ORERR);
+        
+        if(rxcount == receivesize){
+            usart_interrupt_disable(EVAL_COM, USART_INT_RBNE);
+        }
+    }
+
+    if(RESET != usart_interrupt_flag_get(EVAL_COM, USART_INT_FLAG_TBE)){
+        /* transmit data */
+        usart_data_transmit(EVAL_COM, transmitter_buffer[txcount++]);
+        if(txcount == transfersize){
+            usart_interrupt_disable(EVAL_COM, USART_INT_TBE);
+        }
+    }
+}

@@ -36,6 +36,7 @@ OF SUCH DAMAGE.
 */
 
 #include "main.h"
+#include "hardware.h"
 
 unsigned int SysTickCounter;
 unsigned int adcStart, adcEnd;
@@ -45,9 +46,19 @@ uint16_t timer16PwmSetting = 500; // start at 50%.
 bool bTimerSet = false;
 
 void delay_uSec(unsigned long ulDelay_us);  // in delay_uSec.c
-// functions in Timer16Pwm.c
+// functions in Timer16Pwm.c:
 void InitTimer16Pwm(void);
 void SetDutyCycle(uint16_t dutyCycle);
+
+#define ARRAYNUM(arr_nanme)      (uint32_t)(sizeof(arr_nanme) / sizeof(*(arr_nanme)))
+#define TRANSMIT_SIZE   (ARRAYNUM(transmitter_buffer) - 1)
+
+uint8_t transmitter_buffer[] = "\n\rUSART interrupt test\n\r";
+uint8_t receiver_buffer[UART_BUFFER_SIZE];
+uint8_t transfersize = TRANSMIT_SIZE;
+uint8_t receivesize = UART_BUFFER_SIZE;
+__IO uint8_t txcount = 0; 
+__IO uint16_t rxcount = 0; 
 
 
 void Sleep(void)
@@ -57,52 +68,6 @@ void Sleep(void)
   // sleep for up to 1 second:
   while (lastSystick == SysTickCounter)
     __WFI();
-}
-
-
-/* configure the I/O clocks */
-void rcu_config(void)
-{
-    /* enable GPIOC clock */
-    rcu_periph_clock_enable(RCU_GPIOA);
-    /* enable ADC clock */
-    rcu_periph_clock_enable(RCU_ADC);
-    /* config ADC clock */
-    rcu_adc_clock_config(RCU_ADCCK_APB2_DIV6);
-}
-
-/* configure the ADC GPIO */
-void acd_gpio_config(void)
-{
-    /* config the GPIO as analog mode */
-    gpio_mode_set(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO_PIN_1);
-}
-
-/* configure the ADC peripheral */
-void adc_config(void)
-{
-    /* ADC channel length config */
-    adc_channel_length_config(ADC_REGULAR_CHANNEL, 1U);
-    /* ADC regular channel config */
-    adc_regular_channel_config(0U, ADC_CHANNEL_1, ADC_SAMPLETIME_55POINT5);
-
-    /* ADC trigger config */
-    adc_external_trigger_source_config(ADC_REGULAR_CHANNEL, ADC_EXTTRIG_REGULAR_NONE);
-    /* ADC data alignment config */
-    adc_data_alignment_config(ADC_DATAALIGN_RIGHT);
-
-    adc_external_trigger_config(ADC_REGULAR_CHANNEL, ENABLE);
-
-    /* ADC discontinuous mode */
-    adc_special_function_config(ADC_SCAN_MODE, DISABLE);
-
-    /* enable ADC interface */
-    adc_enable();
-    delay_uSec(1000);
-
-    /* ADC calibration and reset calibration */
-    adc_calibration_enable();
-
 }
 
 #define TEST_LOOPS 10000
@@ -152,27 +117,43 @@ int main(void)
 //    test_usec_delay();
     
     /* ADC GPIO configuration */
-    acd_gpio_config();
+//    acd_gpio_config();
     /* ADC configuration */
-    adc_config();
+//    adc_config();
 
     /* initialize the LEDs, USART and key(aka button) */
     gd_eval_led_init(LED1);
     gd_eval_led_init(LED2);
-    gd_eval_com_init(EVAL_COM);
+//    gd_eval_com_init(EVAL_COM);
     gd_eval_key_init(KEY_WAKEUP, KEY_MODE_GPIO);
     
     /* init Timer16 as a PWM on the default I/O */
     InitTimer16Pwm();
 
     /* print out the clock frequency of system, AHB, APB1 and APB2 */
-    printf("SystemCoreClock is %d\r\n", SystemCoreClock);
-    printf("CK_SYS   is %8d\r\n", rcu_clock_freq_get(CK_SYS));
-    printf("CK_AHB   is %8d\r\n", rcu_clock_freq_get(CK_AHB));
-    printf("CK_APB1  is %8d\r\n", rcu_clock_freq_get(CK_APB1));
-    printf("CK_APB2  is %8d\r\n", rcu_clock_freq_get(CK_APB2));
-    printf("CK_ADC   is %8d\r\n", rcu_clock_freq_get(CK_ADC));
-    printf("CK_USART is %8d\r\n", rcu_clock_freq_get(CK_USART));
+//    printf("SystemCoreClock is %d\r\n", SystemCoreClock);
+//    printf("CK_SYS   is %8d\r\n", rcu_clock_freq_get(CK_SYS));
+//    printf("CK_AHB   is %8d\r\n", rcu_clock_freq_get(CK_AHB));
+//    printf("CK_APB1  is %8d\r\n", rcu_clock_freq_get(CK_APB1));
+//    printf("CK_APB2  is %8d\r\n", rcu_clock_freq_get(CK_APB2));
+//    printf("CK_ADC   is %8d\r\n", rcu_clock_freq_get(CK_ADC));
+//    printf("CK_USART is %8d\r\n", rcu_clock_freq_get(CK_USART));
+
+    /* USART interrupt configuration */
+    nvic_irq_enable(USART0_IRQn, 1, 0);
+     
+    /* initialize the UART */
+    usart0_gpio_config();
+    usart0_config();
+    
+    /* enable USART RX and TX interrupt 
+        This should automatically start the TX sending and the RX receiving. 
+    */  
+    
+    DEBUG_BREAK();
+
+    usart_interrupt_enable(USART0, USART_INT_RBNE);
+    usart_interrupt_enable(USART0, USART_INT_TBE);
 
     while (1)
     {
@@ -188,22 +169,24 @@ int main(void)
         else
             gd_eval_led_off(LED2);
 
-        // once each second, if a conversion is not in-progress, start one
-        if (((SysTickCounter % 1000) == 0)
-                && (adc_flag_get(ADC_FLAG_STRC) != SET))
-        {
-            adcStart = SysTickCounter;
-            adc_software_trigger_enable(ADC_REGULAR_CHANNEL);
-        }
-        // once it's complete, read it:
-        if (adc_flag_get(ADC_FLAG_EOC) == SET)
-        {
-            adcEnd = SysTickCounter;
-            adcData = adc_regular_data_read();
-            //printf("conversion time %d\r\n", adcEnd - adcStart);
-            // clear the start flag so the next conversion can run
-            adc_flag_clear(ADC_FLAG_STRC);
-        }
+//        // once each second, if a conversion is not in-progress, start one
+//        if (((SysTickCounter % 1000) == 0)
+//                && (adc_flag_get(ADC_FLAG_STRC) != SET))
+//        {
+//            adcStart = SysTickCounter;
+//            adc_software_trigger_enable(ADC_REGULAR_CHANNEL);
+//        }
+//        // once it's complete, read it:
+//        if (adc_flag_get(ADC_FLAG_EOC) == SET)
+//        {
+//            adcEnd = SysTickCounter;
+//            adcData = adc_regular_data_read();
+//            //printf("conversion time %d\r\n", adcEnd - adcStart);
+//            // clear the start flag so the next conversion can run
+//            adc_flag_clear(ADC_FLAG_STRC);
+//        }
+
+
         // update Timer16 5x per second
         if ((SysTickCounter % 200) == 0)
         {
@@ -219,7 +202,14 @@ int main(void)
         else
           bTimerSet = false;
 
-      Sleep();
+    if ((RESET != usart_flag_get(USART0, USART_FLAG_TC))
+      && (rxcount == receivesize))
+    {
+      DEBUG_BREAK();
+      // printf("\n\rUSART receive successfully!\n\r");
+    }
+ 
+    Sleep();
 
     }// wend(1)
 }

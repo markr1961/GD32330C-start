@@ -42,7 +42,16 @@ OF SUCH DAMAGE.
 #include "systick.h"
 #include "gd32330c-start.h"
 
+#define UART_BUFFER_SIZE    32
 extern unsigned int SysTickCounter;
+
+// UART test vars:
+extern uint8_t transfersize;
+extern uint8_t receivesize;
+extern __IO uint8_t txcount; 
+extern __IO uint16_t rxcount; 
+extern uint8_t receiver_buffer[UART_BUFFER_SIZE];
+extern uint8_t transmitter_buffer[];
 
 #define DEBUG_BREAK() do { __asm("bkpt #0"); } while(0)
 

@@ -1170,6 +1170,9 @@
       <name>$PROJ_DIR$\..\gd32f3x0_it.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\hardware.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\led.c</name>
     </file>
     <file>
@@ -1270,6 +1273,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\gd32f3x0_it.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\hardware.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\main.h</name>
